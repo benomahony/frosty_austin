@@ -93,13 +93,18 @@
           }
         }
       }
-    }
+
 
     var ctx1 = document.getElementById('GSD').getContext('2d');
     window.test = new Chart(ctx1, options);
   </script>
 
   <script>
+    var notations = {
+    1:"Low",
+    2:"Medium",
+    3:"High"
+}
     var options = {
       type: 'radar',
       data: {
@@ -129,7 +134,10 @@
           ticks: {
             max: 3,
             min: 0,
-            stepSize: 1
+            stepSize: 1,
+            callback: function (value, index, values) {
+              return notations[value];
+              }
           },
           pointLabels: {
             fontSize: 12
@@ -142,6 +150,11 @@
     window.test = new Chart(ctx2, options);
   </script>
     <script>
+    var notations = {
+    1:"Low",
+    2:"Medium",
+    3:"High"
+}
     var options = {
       type: 'radar',
       data: {
@@ -174,10 +187,13 @@
           ticks: {
             max: 3,
             min: 0,
-            stepSize: 1
+            stepSize: 1,
+            callback: function (value, index, values) {
+              return notations[value];
+              }
           },
           pointLabels: {
-            fontSize: 12
+            fontSize: 8
           }
         }
       }
