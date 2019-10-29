@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Cytora Draggable Growth Tool (Frosty Austin)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+  <script src="chartjs-plugin-dragdata.min.js"></script>
+  <style>
+
+    html,
+    body {
+      font-weight: 16;
+      font-family: HelveticaNeue;
+
+      margin: 0;
+      padding: 0;
+
+
+    }
+    .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto;
+  margin: 0;
+  padding: 0;
+
+    }
+    canvas {
+    }
+  </style>
+</head>
+
+<body>
+  <h1 align="center">Cytora Draggable Growth Tool (Frosty Austin)</h1>
+  <div class="grid-container">
+    <div class="grid-item" style="position: relative; height:60vh; width:30vw">
+    <canvas id="GSD"></canvas>
+    </div>q
+    <div class="grid-item" style="position: relative; height:60vh; width:30vw">
+    <canvas id="Values"></canvas>
+    </div>
+    <div class="grid-item" style="position: relative; height:60vh; width:30vw">
+    <canvas id="People"></canvas>
+  </div>
+
+  
+  <script>
+    var notations = {
+    1:"Low",
+    2:"Medium",
+    3:"High"
+}
+    var options = {
+      type: 'radar',
+      data: {
+        labels: ["Work Quality", "Throughput", "Strategy"],
+        datasets: [{
+          label: 'GSD',
+          data: [1, 2, 3],
+          pointHitRadius: 25,
+          'backgroundColor': 'rgba(140, 221, 207, 0.5)'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        dragData: true,
+        dragDataRound: 1,
+        onDragStart: function(e) {
+          console.log(e)
+        },
+        onDrag: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        onDragEnd: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        scale: {
+          ticks: {
+            max: 3,
+            min: 0,
+            stepSize: 1,
+            callback: function (value, index, values) {
+              return notations[value];
+              }
+            }
+
+          },
+          pointLabels: {
+            fontSize: 12
+          }
+        }
+      }
+    }
+
+    var ctx1 = document.getElementById('GSD').getContext('2d');
+    window.test = new Chart(ctx1, options);
+  </script>
+
+  <script>
+    var options = {
+      type: 'radar',
+      data: {
+        labels: ["Start with the Customer", "Ship fast and Iterate", "Impact Not Ego", "Slay Dragons"],
+        datasets: [{
+          label: "Values",
+          data: [1, 2, 3, 1],
+          pointHitRadius: 25,
+          'backgroundColor': 'rgba(74, 183, 238, 0.5)'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        dragData: true,
+        dragDataRound: 1,
+        onDragStart: function(e) {
+          console.log(e)
+        },
+        onDrag: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        onDragEnd: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        scale: {
+          ticks: {
+            max: 3,
+            min: 0,
+            stepSize: 1
+          },
+          pointLabels: {
+            fontSize: 12
+          }
+        }
+      }
+    }
+
+    var ctx2 = document.getElementById('Values').getContext('2d');
+    window.test = new Chart(ctx2, options);
+  </script>
+    <script>
+    var options = {
+      type: 'radar',
+      data: {
+        labels: ["Coaching and Mentoring", "Recruiting and Evangelism", "Wellbeing and Community"],
+        datasets: [{
+          label: "People",
+          data: [1, 2, 3],
+          pointHitRadius: 25,
+          'backgroundColor': 'rgba(238, 169, 197, 0.5)'
+        }]
+      },
+      options: {
+        labels: {
+          fontSize: 50
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        dragData: true,
+        dragDataRound: 1,
+        onDragStart: function(e) {
+          console.log(e)
+        },
+        onDrag: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        onDragEnd: function(e, datasetIndex, index, value) {
+          console.log(datasetIndex, index, value)
+        },
+        scale: {
+          ticks: {
+            max: 3,
+            min: 0,
+            stepSize: 1
+          },
+          pointLabels: {
+            fontSize: 12
+          }
+        }
+      }
+    }
+
+    var ctx3 = document.getElementById('People').getContext('2d');
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontFamily = 'Helvetica Neue';
+    window.test = new Chart(ctx3, options);
+  </script>
+</body>
+
+</html>
